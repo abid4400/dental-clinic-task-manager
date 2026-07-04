@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Dental Clinic Task Manager
 
 A full-stack task/appointment manager for a dental clinic, built with **Node.js, Express, MongoDB (Mongoose), EJS, TailwindCSS, and Passport.js (Local Strategy)**.
@@ -199,3 +200,6 @@ All task routes (web and API) are protected: unauthenticated visitors are redire
 - **"MongoDB connection error" on startup** — double-check `MONGO_URI` in `.env`, and that your IP (or `0.0.0.0/0`) is allowed in Atlas Network Access.
 - **Tailwind styles missing** — run `npm run build:css` manually to regenerate `public/css/tailwind.css`.
 - **Sessions not persisting** — confirm `MONGO_URI` is reachable; sessions are stored in MongoDB via `connect-mongo`.
+=======
+# dental-clinic-task-manager
+>>>>>>> 97f9a42e54b28c38b3e35982066067fc39476af5
