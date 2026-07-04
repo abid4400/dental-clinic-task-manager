@@ -8,6 +8,8 @@ module.exports = function errorHandler(err, req, res, next) {
     });
   }
 
+  // req.flash may not be available if an earlier middleware (e.g. the
+  // session store) failed before connect-flash was reached.
   if (typeof req.flash === 'function') {
     req.flash('error_msg', err.message || 'Something went wrong.');
   }

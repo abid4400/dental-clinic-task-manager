@@ -1,8 +1,14 @@
-<div class="flex items-center justify-between mb-6">
+<div class="flex items-center justify-between mb-6 gap-3 flex-wrap">
   <h1 class="text-2xl font-semibold">Clinic Tasks &amp; Appointments</h1>
-  <a href="/tasks/new" class="bg-teal-600 hover:bg-teal-700 text-white text-sm font-medium px-4 py-2 rounded-md transition">
-    + New Task
-  </a>
+  <div class="flex gap-2">
+    <a href="/tasks/report/print" target="_blank" rel="noopener"
+      class="bg-white border border-slate-300 hover:bg-slate-50 text-slate-700 text-sm font-medium px-4 py-2 rounded-md transition">
+      Print Report
+    </a>
+    <a href="/tasks/new" class="bg-teal-600 hover:bg-teal-700 text-white text-sm font-medium px-4 py-2 rounded-md transition">
+      + New Task
+    </a>
+  </div>
 </div>
 
 <% if (tasks.length === 0) { %>
@@ -10,10 +16,11 @@
     No tasks yet. Create your first one.
   </div>
 <% } else { %>
-  <div class="overflow-x-auto bg-white rounded-lg shadow">
+  <div class="overflow-visible bg-white rounded-lg shadow">
     <table class="min-w-full divide-y divide-slate-200 text-sm">
       <thead class="bg-slate-100 text-left">
         <tr>
+          <th class="px-4 py-3 font-semibold">Photo</th>
           <th class="px-4 py-3 font-semibold">Title</th>
           <th class="px-4 py-3 font-semibold">Patient</th>
           <th class="px-4 py-3 font-semibold">Doctor</th>
@@ -23,8 +30,15 @@
         </tr>
       </thead>
       <tbody class="divide-y divide-slate-100">
-        <% tasks.forEach(function(task) { %>
+        <% tasks.forEach(function(task, i) { %>
           <tr>
+            <td class="px-4 py-3">
+              <% if (task.photo) { %>
+                <img src="<%= task.photo %>" alt="Task photo" class="w-10 h-10 object-cover rounded-md border border-slate-200">
+              <% } else { %>
+                <div class="w-10 h-10 rounded-md bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-300 text-xs">&mdash;</div>
+              <% } %>
+            </td>
             <td class="px-4 py-3"><%= task.title %></td>
             <td class="px-4 py-3"><%= task.patientName %></td>
             <td class="px-4 py-3"><%= task.doctorName %></td>
@@ -37,12 +51,19 @@
                 <%= task.status %>
               </span>
             </td>
-            <td class="px-4 py-3 text-right space-x-2 whitespace-nowrap">
-              <a href="/tasks/<%= task._id %>/edit" class="text-teal-600 hover:underline">Edit</a>
-              <form action="/tasks/<%= task._id %>?_method=DELETE" method="POST" class="inline"
-                onsubmit="return confirm('Delete this task?');">
-                <button type="submit" class="text-rose-600 hover:underline">Delete</button>
-              </form>
+            <td class="px-4 py-3 text-right relative">
+              <button type="button" onclick="toggleMenu(<%= i %>)" id="menu-btn-<%= i %>"
+                class="inline-flex items-center justify-center w-8 h-8 rounded-md hover:bg-slate-100 text-slate-500 text-lg leading-none">
+                &#8942;
+              </button>
+              <div id="menu-<%= i %>"
+                class="hidden absolute right-4 mt-1 w-40 bg-white border border-slate-200 rounded-md shadow-lg z-10 text-left overflow-hidden">
+                <a href="/tasks/<%= task._id %>/edit" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50">Edit</a>
+                <a href="/tasks/report/print" target="_blank" rel="noopener" class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-50">Print Report</a>
+                <form action="/tasks/<%= task._id %>?_method=DELETE" method="POST" onsubmit="return confirm('Delete this task?');">
+                  <button type="submit" class="w-full text-left px-4 py-2 text-sm text-rose-600 hover:bg-rose-50">Delete</button>
+                </form>
+              </div>
             </td>
           </tr>
         <% }); %>
@@ -50,3 +71,17 @@
     </table>
   </div>
 <% } %>
+
+<script>
+  function toggleMenu(i) {
+    const menu = document.getElementById('menu-' + i);
+    const isOpen = !menu.classList.contains('hidden');
+    document.querySelectorAll('[id^="menu-"]').forEach(function (m) { m.classList.add('hidden'); });
+    if (!isOpen) menu.classList.remove('hidden');
+  }
+  document.addEventListener('click', function (e) {
+    if (!e.target.closest('[id^="menu-btn-"]')) {
+      document.querySelectorAll('[id^="menu-"]').forEach(function (m) { m.classList.add('hidden'); });
+    }
+  });
+</script>

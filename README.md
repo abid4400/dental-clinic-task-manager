@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Dental Clinic Task Manager
 
 A full-stack task/appointment manager for a dental clinic, built with **Node.js, Express, MongoDB (Mongoose), EJS, TailwindCSS, and Passport.js (Local Strategy)**.
@@ -72,6 +71,13 @@ All endpoints below require an active login session (cookie-based).
 | DELETE | `/api/tasks/:id`  | Delete a task      |
 
 Responses use a consistent JSON envelope: `{ "success": true/false, "data": ..., "message": ... }`.
+
+## 3a. Additional Features
+
+- **Photo / X-ray upload** — the create and edit task forms accept an optional image (JPG/PNG, up to 3MB). It's stored as a base64 data URI directly on the Task document, so it works out of the box on free hosting tiers with no separate file storage or cloud bucket needed. A thumbnail shows in the task list; the edit form lets you replace or remove it.
+- **Popup actions menu** — each row in the task list has a ⋮ button that opens a small menu with Edit, Print Report, and Delete, instead of plain inline links.
+- **Printable report** — the "Print Report" button opens a clean, standalone report page (`/tasks/report/print`) listing every task with its photo, patient, doctor, date, status, and notes. Use the on-page "Print / Save as PDF" button — this uses the browser's native print dialog, so no extra PDF library is required.
+
 
 ---
 
@@ -200,6 +206,3 @@ All task routes (web and API) are protected: unauthenticated visitors are redire
 - **"MongoDB connection error" on startup** — double-check `MONGO_URI` in `.env`, and that your IP (or `0.0.0.0/0`) is allowed in Atlas Network Access.
 - **Tailwind styles missing** — run `npm run build:css` manually to regenerate `public/css/tailwind.css`.
 - **Sessions not persisting** — confirm `MONGO_URI` is reachable; sessions are stored in MongoDB via `connect-mongo`.
-=======
-# dental-clinic-task-manager
->>>>>>> 97f9a42e54b28c38b3e35982066067fc39476af5

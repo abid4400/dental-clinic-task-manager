@@ -1,6 +1,6 @@
 <div class="max-w-lg mx-auto bg-white rounded-lg shadow p-6">
   <h1 class="text-xl font-semibold mb-4">Edit Task</h1>
-  <form action="/tasks/<%= task._id %>?_method=PUT" method="POST" class="space-y-4">
+  <form action="/tasks/<%= task._id %>?_method=PUT" method="POST" enctype="multipart/form-data" class="space-y-4">
     <div>
       <label class="block text-sm font-medium mb-1" for="title">Title</label>
       <input type="text" id="title" name="title" value="<%= task.title %>" required
@@ -35,6 +35,21 @@
       <label class="block text-sm font-medium mb-1" for="notes">Notes</label>
       <textarea id="notes" name="notes" rows="3"
         class="w-full rounded-md border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500"><%= task.notes %></textarea>
+    </div>
+    <div>
+      <label class="block text-sm font-medium mb-1" for="photo">Photo / X-ray <span class="text-slate-400 font-normal">(optional)</span></label>
+      <% if (task.photo) { %>
+        <div class="mb-2 flex items-center gap-3">
+          <img src="<%= task.photo %>" alt="Current photo" class="w-20 h-20 object-cover rounded-md border border-slate-200">
+          <label class="inline-flex items-center gap-2 text-sm text-rose-600">
+            <input type="checkbox" name="removePhoto" value="true" class="rounded border-slate-300">
+            Remove current photo
+          </label>
+        </div>
+      <% } %>
+      <input type="file" id="photo" name="photo" accept="image/*"
+        class="w-full text-sm text-slate-600 file:mr-3 file:py-2 file:px-3 file:rounded-md file:border-0 file:bg-teal-50 file:text-teal-700 file:text-sm file:font-medium hover:file:bg-teal-100">
+      <p class="text-xs text-slate-400 mt-1">Uploading a new photo replaces the current one. JPG or PNG, up to 3MB.</p>
     </div>
     <div class="flex gap-3">
       <button type="submit" class="bg-teal-600 hover:bg-teal-700 text-white font-medium px-4 py-2 rounded-md transition">

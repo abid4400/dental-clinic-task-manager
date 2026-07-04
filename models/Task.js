@@ -31,6 +31,13 @@ const TaskSchema = new mongoose.Schema(
       trim: true,
       default: '',
     },
+    photo: {
+      // Stored as a base64 data URI (e.g. "data:image/png;base64,...").
+      // Simple and works well for small clinic photos/X-rays without
+      // needing separate file storage or a cloud storage provider.
+      type: String,
+      default: '',
+    },
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
