@@ -11,25 +11,24 @@
     "postinstall": "npm run build:css"
   },
   "dependencies": {
+    "autoprefixer": "^10.4.19",
     "bcryptjs": "^2.4.3",
     "connect-flash": "^0.1.1",
-    "connect-mongo": "^4.6.0",
+    "connect-mongo": "^5.1.0",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",
     "express": "^4.19.2",
     "express-ejs-layouts": "^2.5.1",
     "express-session": "^1.18.0",
     "method-override": "^3.0.0",
-    "mongodb": "^4.17.2",
     "mongoose": "^8.4.1",
     "passport": "^0.7.0",
-    "passport-local": "^1.0.0"
-  },
-  "devDependencies": {
-    "autoprefixer": "^10.4.19",
-    "nodemon": "^3.1.4",
+    "passport-local": "^1.0.0",
     "postcss": "^8.4.38",
     "tailwindcss": "^3.4.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
   },
   "engines": {
     "node": ">=18.0.0"
