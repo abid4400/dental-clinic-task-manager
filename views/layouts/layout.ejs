@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= title %> | Dental Clinic Task Manager</title>
+  <link rel="stylesheet" href="/css/tailwind.css">
+</head>
+<body class="bg-slate-50 min-h-screen flex flex-col text-slate-800">
+
+  <nav class="bg-teal-700 text-white shadow-md">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="/" class="font-semibold text-lg tracking-tight">Dental Clinic Task Manager</a>
+      <div class="flex items-center gap-4 text-sm">
+        <% if (currentUser) { %>
+          <span class="hidden sm:inline text-teal-100">Signed in as <strong><%= currentUser.username %></strong></span>
+          <a href="/tasks" class="hover:underline">Tasks</a>
+          <a href="/auth/logout" class="bg-teal-600 hover:bg-teal-500 px-3 py-1.5 rounded-md transition">Logout</a>
+        <% } else { %>
+          <a href="/auth/login" class="hover:underline">Login</a>
+          <a href="/auth/register" class="bg-teal-600 hover:bg-teal-500 px-3 py-1.5 rounded-md transition">Register</a>
+        <% } %>
+      </div>
+    </div>
+  </nav>
+
+  <main class="flex-1 max-w-5xl w-full mx-auto px-4 py-8">
+    <% if (typeof success_msg !== 'undefined' && success_msg.length) { %>
+      <div class="mb-4 rounded-md bg-emerald-100 text-emerald-800 px-4 py-3 text-sm"><%= success_msg %></div>
+    <% } %>
+    <% if (typeof error_msg !== 'undefined' && error_msg.length) { %>
+      <div class="mb-4 rounded-md bg-rose-100 text-rose-800 px-4 py-3 text-sm"><%= error_msg %></div>
+    <% } %>
+    <% if (typeof error !== 'undefined' && error.length) { %>
+      <div class="mb-4 rounded-md bg-rose-100 text-rose-800 px-4 py-3 text-sm"><%= error %></div>
+    <% } %>
+
+    <%- body %>
+  </main>
+
+  <footer class="text-center text-xs text-slate-400 py-4">
+    &copy; <%= new Date().getFullYear() %> Dental Clinic Task Manager
+  </footer>
+</body>
+</html>

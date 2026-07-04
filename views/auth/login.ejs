@@ -1,0 +1,22 @@
+<div class="max-w-md mx-auto bg-white rounded-lg shadow p-6">
+  <h1 class="text-xl font-semibold mb-4">Log In</h1>
+  <form action="/auth/login" method="POST" class="space-y-4">
+    <div>
+      <label class="block text-sm font-medium mb-1" for="username">Username</label>
+      <input type="text" id="username" name="username" required
+        class="w-full rounded-md border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500">
+    </div>
+    <div>
+      <label class="block text-sm font-medium mb-1" for="password">Password</label>
+      <input type="password" id="password" name="password" required
+        class="w-full rounded-md border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500">
+    </div>
+    <button type="submit"
+      class="w-full bg-teal-600 hover:bg-teal-700 text-white font-medium py-2 rounded-md transition">
+      Log In
+    </button>
+  </form>
+  <p class="text-sm text-slate-500 mt-4">
+    Don't have an account? <a href="/auth/register" class="text-teal-600 hover:underline">Register</a>
+  </p>
+</div>

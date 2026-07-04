@@ -1,0 +1,45 @@
+<div class="max-w-lg mx-auto bg-white rounded-lg shadow p-6">
+  <h1 class="text-xl font-semibold mb-4">New Task</h1>
+  <form action="/tasks" method="POST" class="space-y-4">
+    <div>
+      <label class="block text-sm font-medium mb-1" for="title">Title</label>
+      <input type="text" id="title" name="title" required
+        class="w-full rounded-md border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500">
+    </div>
+    <div>
+      <label class="block text-sm font-medium mb-1" for="patientName">Patient Name</label>
+      <input type="text" id="patientName" name="patientName" required
+        class="w-full rounded-md border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500">
+    </div>
+    <div>
+      <label class="block text-sm font-medium mb-1" for="doctorName">Doctor Name</label>
+      <input type="text" id="doctorName" name="doctorName" required
+        class="w-full rounded-md border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500">
+    </div>
+    <div>
+      <label class="block text-sm font-medium mb-1" for="dateTime">Date &amp; Time</label>
+      <input type="datetime-local" id="dateTime" name="dateTime" required
+        class="w-full rounded-md border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500">
+    </div>
+    <div>
+      <label class="block text-sm font-medium mb-1" for="status">Status</label>
+      <select id="status" name="status"
+        class="w-full rounded-md border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500">
+        <option value="pending">Pending</option>
+        <option value="completed">Completed</option>
+        <option value="cancelled">Cancelled</option>
+      </select>
+    </div>
+    <div>
+      <label class="block text-sm font-medium mb-1" for="notes">Notes</label>
+      <textarea id="notes" name="notes" rows="3"
+        class="w-full rounded-md border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-teal-500"></textarea>
+    </div>
+    <div class="flex gap-3">
+      <button type="submit" class="bg-teal-600 hover:bg-teal-700 text-white font-medium px-4 py-2 rounded-md transition">
+        Create Task
+      </button>
+      <a href="/tasks" class="px-4 py-2 rounded-md border border-slate-300 hover:bg-slate-50 transition">Cancel</a>
+    </div>
+  </form>
+</div>
